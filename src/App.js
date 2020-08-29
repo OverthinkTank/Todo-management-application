@@ -4,7 +4,8 @@ import './App.css';
 // import FirstComponent from './component/learning-example/FirstComponent';
 // import SecondComponent from './component/learning-example/SecondComponent';
 // import  ThirdComponent from './component/learning-example/ThirdComponent';
-import Counter from './component/counter/Counter';
+// import Counter from './component/counter/Counter';
+import ToDo from './component/ToDo/ToDoApp';
 
 class App extends Component {
   render() {
@@ -21,7 +22,7 @@ class LearningComponents extends Component{
   render(){
     return(
       <div className="LearningComponents">
-        To-Do Application
+        {/* To-Do Application */}
         {/* <FirstComponent />
         <SecondComponent/>
         <ThirdComponent/> 
@@ -31,8 +32,9 @@ class LearningComponents extends Component{
         <CounterButton  by={50}/>
         <CounterButton  by={100}/>
         <CounterButton  by={200}/> */}
-        <Counter />
-      </div>
+        {/* <Counter /> */}
+        <ToDo />
+      </div> 
 
     );
   }
