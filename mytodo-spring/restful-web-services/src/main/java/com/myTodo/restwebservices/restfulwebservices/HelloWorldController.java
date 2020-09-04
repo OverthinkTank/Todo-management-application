@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 //Controller
 @RestController
-//To resolve CORS error
+//To resolve CORS ERROR!!!!!
 @CrossOrigin(origins = "http://localhost:4200")
 //https://localhost:4200
 
@@ -28,12 +28,13 @@ public class HelloWorldController {
 	
 	@GetMapping(path = "/hello-world-bean")
 	public HelloWorldBean helloWorldBean() {
-		return new HelloWorldBean("Hello World Bean");
+		return new HelloWorldBean("Hello World Bean1");
 	}
 	
 	//"/hello-world/path-variable/Vwake"
 	@GetMapping(path = "/hello-world/path-variable/{name}")
 	public HelloWorldBean helloWorldPathVariable(@PathVariable String name) {
+//		throw new RuntimeException("Something Error as Expected");
 		return new HelloWorldBean(String.format("Hello World, %s", name));
 	}
 }
