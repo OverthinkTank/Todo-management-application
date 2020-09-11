@@ -12,7 +12,8 @@ class ListToDosComponent extends Component{
             message : null
         }
 
-        // this.deleteSelectedToDo = this.deleteSelectedToDo.bind(this);
+        this.deleteSelectedToDo = this.deleteSelectedToDo.bind(this);
+        this.updateSelectedToDo = this.updateSelectedToDo.bind(this);
         // this.refreshTodos = this.refreshTodos.bind(this);
     }
 
@@ -58,17 +59,31 @@ class ListToDosComponent extends Component{
         return true;
     }
 
-    // deleteSelectedToDo(id){
+    deleteSelectedToDo(id){
+        let username = AuthenticationService.getLoggedInUserName();
+        console.log(id + " " + username);
+        ToDoService.deleteTodo(username, id)
+        .then(
+            response => {
+                this.setState({message : `Deleted todo ${id}`});
+                // this.refreshTodos();
+            }
+        )
+    }
+
+    updateSelectedToDo(id){
         // let username = AuthenticationService.getLoggedInUserName();
-        // console.log(id + " " + username);
+        console.log('update' + id);
+        // /todos/${id}
+        this.props.history.push(`/todos/${id}`);
         // ToDoService.deleteTodo(username, id)
         // .then(
-            // response => {
-                // this.setState({message : `Deleted todo ${id}`});
+        //     response => {
+        //         this.setState({message : `Deleted todo ${id}`});
         //         // this.refreshTodos();
-            // }
+        //     }
         // )
-    // }
+    }
     
     render(){
         // console.log('render');
@@ -84,6 +99,7 @@ class ListToDosComponent extends Component{
                                 <th>Description</th>
                                 <th>DoneStatus</th>
                                 <th>TargetDate</th>
+                                <th>Update</th>
                                 <th>Delete</th>
                             </tr>
                         </thead> 
@@ -97,7 +113,8 @@ class ListToDosComponent extends Component{
                                         <td>{todo.description}</td>
                                         <td>{todo.done.toString()}</td>
                                         <td>{todo.targetDate.toString()}</td>
-                                        <td><button className="btn btn-warning" onClick={() => this.deleteSelectedToDo(todo.id)}>Delete</button></td>
+                                        <td><button className="btn btn-success" onClick={() => this.updateSelectedToDo(todo.id)}>Update</button></td>
+                                        <td><button className="btn btn-danger" onClick={() => this.deleteSelectedToDo(todo.id)}>Delete</button></td>
                                         </>
                                     </tr>
                                 )
