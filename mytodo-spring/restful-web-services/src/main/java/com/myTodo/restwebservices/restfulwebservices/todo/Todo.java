@@ -8,7 +8,11 @@ public class Todo {
 	private String description;
 	private Date targetDate;
 	private boolean isDone;
-
+	
+	protected Todo(){
+		
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
