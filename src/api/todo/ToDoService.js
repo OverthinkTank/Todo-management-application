@@ -7,6 +7,11 @@ class ToDoService{
         // console.log("To Do RESTAPI Service called");
     }
 
+    retrieveTodo(name,id){
+        return axios.get(`http://localhost:8080/users/{username}/todos/${id}`);
+        // console.log("To Do RESTAPI Service called");
+    }
+
     deleteTodo(name, id){
         return axios.delete(`http://localhost:8080/users/{username}/todos/${id}`);
         // console.log("To Do RESTAPI Service called");
