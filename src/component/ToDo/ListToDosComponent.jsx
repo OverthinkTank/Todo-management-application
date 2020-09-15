@@ -14,7 +14,7 @@ class ListToDosComponent extends Component{
 
         this.deleteSelectedToDo = this.deleteSelectedToDo.bind(this);
         this.updateSelectedToDo = this.updateSelectedToDo.bind(this);
-        // this.refreshTodos = this.refreshTodos.bind(this);
+        this.refreshTodos = this.refreshTodos.bind(this);
     }
 
     componentDidMount(){
@@ -30,22 +30,22 @@ class ListToDosComponent extends Component{
                 this.setState({todos: response.data})
             }
         )
-        // this.refreshTodos();
-        console.log(this.state);
+        this.refreshTodos();
+        // console.log(this.state);
     }
 
-    // refreshTodos(){
-    //     // let username = AuthenticationService.getLoggedInUserName();
-    //     // //GET - RETRIEVING logged user's ToDo
-    //     // TodoService.retrieveAllTodos(username)
-    //     // .then(
-    //     //     response => {
-    //     //         // console.log(response);
-    //     //         this.setState({todos: response.data})
-    //     //     }
-    //     // )
-    //     // console.log(this.state);
-    // }
+    refreshTodos(){
+        let username = AuthenticationService.getLoggedInUserName();
+        //GET - RETRIEVING logged user's ToDo
+        TodoService.retrieveAllTodos(username)
+        .then(
+            response => {
+                // console.log(response);
+                this.setState({todos: response.data})
+            }
+        )
+        // console.log(this.state);
+    }
 
     componentWillUnmount(){
         console.log('ComponentWillUnmount');
@@ -66,7 +66,7 @@ class ListToDosComponent extends Component{
         .then(
             response => {
                 this.setState({message : `Deleted todo ${id}`});
-                // this.refreshTodos();
+                this.refreshTodos();
             }
         )
     }
@@ -80,7 +80,7 @@ class ListToDosComponent extends Component{
         // .then(
         //     response => {
         //         this.setState({message : `Deleted todo ${id}`});
-        //         // this.refreshTodos();
+                // this.refreshTodos();
         //     }
         // )
     }

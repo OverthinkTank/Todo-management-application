@@ -19,7 +19,20 @@ class TodoComponent extends Component{
     }
 
     onSubmit(values){
-        console.log(values);
+        // console.log(values);
+        let username = AuthenticationService.getLoggedInUserName();
+
+        TodoService.updateTodo(username,this.state.id,{
+            id: this.state.id,
+            description: values.description,
+            targetDate: values.targetDate
+        })
+        .then(
+            () => {
+                this.props.history.push('/todos/')
+            },
+            console.log(values)
+        )
     }
 
     componentDidMount(){
@@ -68,11 +81,11 @@ class TodoComponent extends Component{
                     initialValues = {{description,targetDate }}
                         //^ description: description,
                         //^ targetDate : targetDate
-                    onSubmit = {this.onSubmit}
                     validateOnChange={false}
                     validateOnBlur={false}
                     validate = {this.validate}
                     enableReinitialize = {true}
+                    onSubmit = {this.onSubmit}
                    >
                     {
                         (props) => (
@@ -87,15 +100,13 @@ class TodoComponent extends Component{
                                     <label>Target Date</label>
                                     <Field className = "form-control" type = "Date" name = "targetDate"></Field>
                                 </fieldset>
-                                <button className="btn btn-success" type="submit" name="Save">save</button>
+                                <button className="btn btn-success" type="bsubmit"  onClick={this.onSubmit} name="Save" >save</button>
                             </Form>
                         )
                     }
                 </Formik>
             </div>
         </div>
-        
-        
         
         );
     }
