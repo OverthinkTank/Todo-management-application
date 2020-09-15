@@ -40,27 +40,26 @@ public class ToDoResource {
 		return todoService.findById(id);
 	}
 	
-/*	 PUT - UPDATE/Edit INDIVIDUAL TODO  -> we created save additionally to use this PUT*/	
+/*	PUT - UPDATE/Edit INDIVIDUAL TODO  -> we created save additionally to use this PUT*/	
 	@PutMapping("/users/{username}/todos/{id}")
 	public ResponseEntity<Todo> updateToDo(@PathVariable String username, @PathVariable long id, @RequestBody Todo todo){
 		Todo todoUpdated = todoService.save(todo);
 		return new ResponseEntity<Todo>(todoUpdated,HttpStatus.OK);
 	}
 
-/*POST - INDIVIDUAL TODO */	
+/*  POST - INDIVIDUAL TODO */	
 	@PostMapping("/users/{username}/todos/")
 	public ResponseEntity<Void> addToDo(@PathVariable String username, @RequestBody Todo todo){
 		Todo createdTodo = todoService.save(todo);
 		//Location of resource 
-		//Get Current resource URL -> if we append "id" to "/users/{username}/todos/", it will give complete URL for POST
+		//Get Current resource URL -> if we append "id" to "/users/{username}/todos/", it will give complete URL where we want to POST
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(createdTodo.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	
 /*	DELETE  */
 	@DeleteMapping("/users/{username}/todos/{id}")
-	public ResponseEntity<Void> deleteToDo(@PathVariable String username, @PathVariable long id){
-		
+	public ResponseEntity<Void> deleteToDo(@PathVariable String username, @PathVariable long id){		
 		Todo todo = todoService.deleteById(id);
 //		System.out.println(todo.isDone());
 		if(todo!=null) {

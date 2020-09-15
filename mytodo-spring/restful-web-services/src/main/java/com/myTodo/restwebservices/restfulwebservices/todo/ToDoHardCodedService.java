@@ -35,15 +35,12 @@ public class ToDoHardCodedService {
 		if(todos.remove(todo)) {
 			return todo;
 		}
-		
-		
 		return null;
 	}
 	
 	//Method to retrieve individual to by their id
 	Todo findById(long id) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 		for(Todo todo: todos) {
 			if(todo.getId() == id) {
 				return todo;
@@ -63,7 +60,6 @@ public class ToDoHardCodedService {
 			deleteById(todo.getId());
 			todos.add(todo);
 		}
-		
 		return todo;
 	}
 	
