@@ -1,2 +1,2 @@
 # to-do-management-application
-Java Full - Stack Application with React &amp; Spring Boot
+Java FullStack Application with React &amp; Spring Boot
